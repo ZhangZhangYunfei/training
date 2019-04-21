@@ -2,25 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9609a9f7-7193-4344-834f-c32f002916b8" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/META-INF/Training.kotlin_module" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/Main.class" afterPath="$PROJECT_DIR$/out/production/Training/Main.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/list/ListNode.class" afterPath="$PROJECT_DIR$/out/production/Training/list/ListNode.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/list/ListReverse.class" afterPath="$PROJECT_DIR$/out/production/Training/list/ListReverse.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/list/Node.class" afterPath="$PROJECT_DIR$/out/production/Training/list/Node.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/longestpath/Path.class" afterPath="$PROJECT_DIR$/out/production/Training/longestpath/Path.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/longestpath/Traverse.class" afterPath="$PROJECT_DIR$/out/production/Training/longestpath/Traverse.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/longestpath/TreeNode.class" afterPath="$PROJECT_DIR$/out/production/Training/longestpath/TreeNode.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/quicksort/QuickSort.class" afterPath="$PROJECT_DIR$/out/production/Training/quicksort/QuickSort.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/sortcolors/Sort.class" afterPath="$PROJECT_DIR$/out/production/Training/sortcolors/Sort.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/step/Step.class" afterPath="$PROJECT_DIR$/out/production/Training/step/Step.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/string/LongestSubstring.class" afterPath="$PROJECT_DIR$/out/production/Training/string/LongestSubstring.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Training/twentyfour/Solution.class" afterPath="$PROJECT_DIR$/out/production/Training/twentyfour/Solution.class" />
-      <change beforePath="$PROJECT_DIR$/src/quicksort/QuickSort.java" afterPath="$PROJECT_DIR$/src/quicksort/QuickSort.java" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/Main.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/list/ListNode.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/list/ListReverse.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/list/Node.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/longestpath/Path.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/longestpath/Traverse.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/longestpath/TreeNode.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/quicksort/QuickSort.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/sortcolors/Sort.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/step/Step.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/string/LongestSubstring.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Training/twentyfour/Solution.class" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -110,8 +104,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+            <state relative-caret-position="30">
+              <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -405,12 +399,12 @@
       <workItem from="1554960823166" duration="21815000" />
       <workItem from="1555297224765" duration="70056000" />
       <workItem from="1555853056868" duration="11009000" />
-      <workItem from="1555865270542" duration="138000" />
+      <workItem from="1555865270542" duration="235000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108473000" />
+    <option name="totallyTimeSpent" value="108570000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
@@ -1026,8 +1020,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+        <state relative-caret-position="30">
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding />
         </state>
       </provider>
