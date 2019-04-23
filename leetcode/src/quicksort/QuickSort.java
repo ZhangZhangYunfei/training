@@ -247,6 +247,52 @@ public class QuickSort {
 
     }
 
+    private static List<List<Integer>> find(int n) {
+        List<Integer> resultTemp = new ArrayList<>();
+        List<List<Integer>> results = new ArrayList<>();
+        find(0, 0, 1, n, n, resultTemp, results, 2*n);
+        return results;
+    }
+
+    private static void find(int zeroNumbers,
+                             int oneNumbers,
+                             int deepth,
+                             int zeroLeft,
+                             int oneLeft,
+                             List<Integer> resultTemp,
+                             List<List<Integer>> results,
+                             int maxDeepth) {
+        // 没到深度已经使用完0或者1
+        if ((zeroLeft < 0 || oneLeft < 0) && deepth != maxDeepth) {
+            return;
+        }
+        // 达到深度并且符合条件
+        if (deepth == maxDeepth) {
+            if (zeroLeft == 1) {
+                resultTemp.add(0);
+                results.add(resultTemp);
+            } else if (oneLeft == 1) {
+                resultTemp.add(1);
+                results.add(resultTemp);
+            }
+        } else {
+            if (zeroNumbers == oneNumbers) {
+                zeroNumbers = zeroNumbers + 1;
+                zeroLeft = zeroLeft - 1;
+                resultTemp.add(0);
+                find(zeroNumbers, oneNumbers, deepth + 1, zeroLeft, oneLeft, resultTemp, results, maxDeepth);
+            } else if (zeroNumbers > oneNumbers) {
+                List<Integer> resultTemp2 = new ArrayList<>(resultTemp);
+                resultTemp2.add(0);
+                find(zeroNumbers + 1, oneNumbers, deepth + 1, zeroLeft - 1, oneLeft, resultTemp2, results, maxDeepth);
+
+                List<Integer> resultTemp3 = new ArrayList<>(resultTemp);
+                resultTemp3.add(1);
+                find(zeroNumbers, oneNumbers + 1, deepth + 1, zeroLeft, oneLeft - 1, resultTemp3, results, maxDeepth);
+            }
+        }
+    }
+
     public static void main(String[] args) {
 //        int[] values = new int[]{5, 4, 4, 6, 7, 8, 9, 1, 2, 3, 10, 1};
 //        sort(values, 0, values.length - 1);
@@ -268,5 +314,7 @@ public class QuickSort {
 //        int result = longestConsecutive(new int[]{100, 4, 200, 1, 3, 2});
 
         test(3, new ArrayList<>(), new ArrayList<>());
+
+//        var result = find(2);
     }
 }
