@@ -1,7 +1,7 @@
-package com.greetings;
+package com.socketprovider;
 
-import com.astro.NetworkSocket;
-import com.astro.spi.NetworkSocketProvider;
+import com.socket.NetworkSocket;
+import com.socket.spi.NetworkSocketProvider;
 
 public class FastNetworkSocketProvider extends NetworkSocketProvider {
     public FastNetworkSocketProvider() {

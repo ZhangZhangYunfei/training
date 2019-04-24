@@ -1,6 +1,6 @@
-package com.astro;
+package com.socket;
 
-import com.astro.spi.NetworkSocketProvider;
+import com.socket.spi.NetworkSocketProvider;
 
 import java.io.Closeable;
 import java.util.Iterator;

@@ -1,6 +1,6 @@
-package com.astro.spi;
+package com.socket.spi;
 
-import com.astro.NetworkSocket;
+import com.socket.NetworkSocket;
 
 public abstract class NetworkSocketProvider {
     protected NetworkSocketProvider() {

@@ -1,6 +1,6 @@
-package com.greetings;
+package com.socketprovider;
 
-import com.astro.NetworkSocket;
+import com.socket.NetworkSocket;
 
 class FastNetworkSocket extends NetworkSocket {
     FastNetworkSocket() {

@@ -1,6 +1,6 @@
 package com.greetings;
 
-import com.astro.NetworkSocket;
+import com.socket.NetworkSocket;
 import com.astro.World;
 
 public class Main {

@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="astro" />
+    <orderEntry type="module" module-name="socket" />
+    <orderEntry type="module" module-name="socketprovider" />
   </component>
 </module>
