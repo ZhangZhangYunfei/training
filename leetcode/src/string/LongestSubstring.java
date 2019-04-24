@@ -279,6 +279,48 @@ public class LongestSubstring {
         return builder.toString().isEmpty() ? "0" : builder.toString();
     }
 
+    public String getPermutation(int n, int k) {
+        return "";
+    }
+
+    private static List<String> getList() {
+        List<String> result = new ArrayList<>();
+        for (int i = 1; i <= 3; i++) {
+            for (int i1 = 1; i1 <= 3; i1++) {
+                if (i1 == i) {
+                    continue;
+                }
+                for (int i2 = 1; i2 <= 3; i2++) {
+                    if (i2 == i || i2 == i1) {
+                        continue;
+                    }
+                    result.add("" + i + i1 + i2);
+                }
+            }
+        }
+        return result;
+    }
+
+    private static List<String> getList2(List<String> result,
+                                         String resultTemp,
+                                         int total,
+                                         int deepth) {
+        for (int i = 1; i <= total; i++) {
+            if (resultTemp.contains("" + i)) {
+                continue;
+            }
+
+            if (deepth == total) {
+                result.add(resultTemp + i);
+            } else {
+                getList2(result, resultTemp + i, total, deepth + 1);
+            }
+        }
+
+        return result;
+    }
+
+
     public static void main(String[] args) {
 //        String result = getLongestSubstring("pwwkew");
 //        System.out.println(result);
@@ -303,6 +345,10 @@ public class LongestSubstring {
 //        var result = restoreIpAddresses("25525511135");
 //        reverseWords("  hello world!  ");
 
-        multiply("9", "9");
+//        multiply("9", "9");
+//        List<String> result = getList();
+//        List<String> result2 = new ArrayList<>();
+//
+//        getList2(result2, "", 3, 1);
     }
 }
