@@ -320,6 +320,287 @@ public class LongestSubstring {
         return result;
     }
 
+    private static String getList3(int n, int k) {
+        if (n == 1) {
+            return "" + n;
+        }
+        int[] factorial = new int[n - 1];
+        factorial[0] = 1;
+        List<Integer> originValue = new ArrayList<>();
+        for (int index = 1; index < n - 1; index++) {
+            factorial[index] = factorial[index - 1] * (index + 1);
+            originValue.add(index);
+        }
+        originValue.add(n - 1);
+        originValue.add(n);
+
+        String resultTemp = "";
+        int reminder = k;
+        for (int index = 1; index <= n; index++) {
+            int dealer = 0;
+            if (originValue.size() == 1) {
+                dealer = originValue.get(0);
+            } else {
+                if (reminder != 0) {
+                    int length = factorial[n - index - 1];
+                    int reminderTemp = reminder % length;
+                    dealer = reminder / length + (reminderTemp != 0 ? 1 : 0);
+                    reminder = reminderTemp;
+
+                    dealer = originValue.get(dealer - 1);
+                } else {
+                    dealer = originValue.get(originValue.size() - 1);
+                }
+
+                originValue.remove(Integer.valueOf(dealer));
+            }
+
+            resultTemp = resultTemp + dealer;
+        }
+
+        return resultTemp;
+    }
+
+    private static int result2 = 0;
+
+    public static int maxEnvelopes(int[][] envelopes) {
+        if (envelopes == null || envelopes.length == 0 || envelopes[0].length == 0) return 0;
+        result2 = 0;
+        for (int[] envelope : envelopes) {
+            maxEnvelopes(envelopes, envelope, 1);
+        }
+        return result2;
+    }
+
+    public static int maxEnvelopes(int[][] envelopes, int[] reference, int result) {
+        result2 = Math.max(result, result2);
+        for (int[] envelope : envelopes) {
+            if (reference[0] < envelope[0] && reference[1] < envelope[1]) {
+                return maxEnvelopes(envelopes, envelope, result + 1);
+            }
+        }
+        return result;
+    }
+
+
+    public static int[][] merge(int[][] intervals) {
+        int[][] resultTemp = new int[intervals.length][2];
+
+        int newIndex = -1;
+        for (int index = 0; index < intervals.length; index++) {
+            int[] value = intervals[index];
+            // search temp
+            int[] temp = null;
+            int tempIndex = -1;
+            for (int index2 = 0; index2 <= newIndex; index2++) {
+                if (resultTemp[index2][1] < value[0] || value[1] < resultTemp[index2][0]) {
+                    continue;
+                }
+                tempIndex = index2;
+                temp = resultTemp[index2];
+
+                resultTemp[tempIndex] = new int[]{Math.min(value[0], temp[0]),
+                        Math.max(value[temp.length - 1], temp[temp.length - 1])};
+            }
+
+            if (temp == null) {
+                resultTemp[++newIndex] = value;
+            }
+        }
+
+        int[][] result = new int[newIndex + 1][2];
+        for (int i = 0; i <= newIndex; i++) {
+            result[i] = resultTemp[i];
+        }
+        // 没有合并过无需处理
+        if (result.length != intervals.length) {
+            return merge(result);
+        }
+
+        return result;
+    }
+
+    public static int maxAreaOfIsland(int[][] grid) {
+        int result = 0;
+        for (int horizontal = 0; horizontal < grid.length; horizontal++) {
+            for (int vertical = 0; vertical < grid[0].length; vertical++) {
+
+                result = Math.max(result, maxAreaOfIsland(grid, horizontal, vertical, new int[grid.length][grid[0].length]));
+            }
+        }
+        return result;
+    }
+
+    private static int maxAreaOfIsland(int[][] grid, int horizontal, int vertical, int[][] visited) {
+        if (horizontal < 0
+                || vertical < 0
+                || horizontal >= grid.length
+                || vertical >= grid[0].length
+                || grid[horizontal][vertical] == 0
+                || visited[horizontal][vertical] == 1) {
+            return 0;
+        }
+
+        visited[horizontal][vertical] = 1;
+
+        return 1 + maxAreaOfIsland(grid, horizontal + 1, vertical, visited)
+                + maxAreaOfIsland(grid, horizontal - 1, vertical, visited)
+                + maxAreaOfIsland(grid, horizontal, vertical - 1, visited)
+                + maxAreaOfIsland(grid, horizontal, vertical + 1, visited);
+    }
+
+    public static int findCircleNum(int[][] M) {
+        int[] marked = new int[M.length];
+        int result = 0;
+        for (int people = 0; people < M.length; people++) {
+            // 没有被检索过
+            if (marked[people] == 0) {
+                result++;
+                markAllFriends(M, people, marked);
+            }
+        }
+        return result;
+    }
+
+    private static void markAllFriends(int[][] M, int k, int[] marked) {
+        marked[k] = 1;
+        for (int people = 0; people < M.length; people++) {
+            // 已经在朋友圈或者不是朋友
+            if (marked[people] == 1 || M[k][people] == 0) {
+                continue;
+            }
+            // 新朋友则找他所有的朋友
+            markAllFriends(M, people, marked);
+        }
+    }
+
+    public static int maxProfit(int[] prices) {
+        int result = 0;
+        for (int left = 0; left < prices.length; left++) {
+            for (int right = left + 1; right < prices.length; right++) {
+                result = Math.max(result, prices[right] - prices[left]);
+            }
+        }
+        return result;
+    }
+
+    public static int maxProfit2(int[] prices) {
+        int result = 0;
+        if (prices == null || prices.length == 0) {
+            return result;
+        }
+        int min = prices[0];
+        for (int right = 1; right < prices.length; right++) {
+            result = Math.max(result, prices[right] - min);
+            min = Math.min(min, prices[right]);
+        }
+        return result;
+    }
+
+    public static int maxProfit3(int[] prices) {
+        int result = 0;
+        if (prices == null || prices.length <= 1) {
+            return result;
+        }
+        int left = 0;
+        int right = 0;
+        for (int index = 1; index < prices.length; index++) {
+            if (prices[index] >= prices[right]) {
+                right++;
+            } else if (prices[index] < prices[right]) {
+                result += (prices[right] - prices[left]);
+                right = index;
+                left = index;
+            }
+        }
+        result += (prices[right] - prices[left]);
+
+        return result;
+    }
+
+    public static int maximalSquare(char[][] matrix) {
+        int result = 0;
+        for (int horizontal = 0; horizontal < matrix.length; horizontal++) {
+            for (int vertical = 0; vertical < matrix[horizontal].length; vertical++) {
+                if (matrix[horizontal][vertical] == '0') {
+                    continue;
+                }
+
+                int square = 1;
+                result = Math.max(result, square);
+                int horizontalTemp;
+                int verticalTemp;
+                boolean match = true;
+                while (match
+                        && horizontal + square < matrix.length
+                        && vertical + square < matrix[horizontal].length) {
+                    for (horizontalTemp = horizontal; match && horizontalTemp <= horizontal + square; horizontalTemp++) {
+                        for (verticalTemp = vertical; verticalTemp <= vertical + square; verticalTemp++) {
+                            if (matrix[horizontalTemp][verticalTemp] == '0') {
+                                match = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (match) {
+                        result = Math.max(result, square + 1);
+                        square++;
+                    }
+                }
+            }
+        }
+        return result * result;
+    }
+
+    public static int maxSubArray(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+
+        int resultTemp = nums[0];
+        int result = resultTemp;
+        for (int index = 1; index < nums.length; index++) {
+            if (resultTemp <= 0) {
+                resultTemp = nums[index];
+            } else {
+                resultTemp = resultTemp + nums[index];
+            }
+            result = Math.max(result, resultTemp);
+        }
+        return result;
+    }
+
+    private static int result = Integer.MAX_VALUE;
+
+    public static int minimumTotal2(List<List<Integer>> triangle) {
+        int[] res = new int[triangle.size() + 1];
+        for (int i = triangle.size() - 1; i >= 0; i--) {
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                res[j] = Math.min(res[j], res[j + 1]) + triangle.get(i).get(j);
+            }
+        }
+
+        return res[0];
+    }
+
+    public static int minimumTotal(List<List<Integer>> triangle) {
+        result = Integer.MAX_VALUE;
+        add(triangle, 1, 0, 0);
+        return result;
+    }
+
+    private static void add(List<List<Integer>> triangle, int deepth, int currentIndex, int preSum) {
+        if (deepth == triangle.size()) {
+            preSum += triangle.get(deepth - 1).get(currentIndex);
+            result = Math.min(result, preSum);
+            return;
+        }
+
+        add(triangle, deepth + 1, currentIndex, preSum + triangle.get(deepth - 1).get(currentIndex));
+        add(triangle, deepth + 1, currentIndex + 1, preSum + triangle.get(deepth - 1).get(currentIndex));
+    }
+
 
     public static void main(String[] args) {
 //        String result = getLongestSubstring("pwwkew");
@@ -348,7 +629,42 @@ public class LongestSubstring {
 //        multiply("9", "9");
 //        List<String> result = getList();
 //        List<String> result2 = new ArrayList<>();
-//
-//        getList2(result2, "", 3, 1);
+//        getList2(result2, "", 5, 1);
+//        String result = getList3(3, 2);
+//        merge(new int[][]{{2, 3}, {4, 5}, {6, 7}, {8, 9}, {1, 10}});
+//        int result = maxAreaOfIsland(new int[][]{{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+//                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+//                {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+//                {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0},
+//                {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
+//                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+//                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+//                {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}});
+//        int result = findCircleNum(new int[][]{{1, 0, 0, 1},
+//                {0, 1, 1, 0},
+//                {0, 1, 1, 1},
+//                {1, 0, 1, 1}});
+//        int result = maxProfit3(new int[]{1, 2, 3, 4, 5});
+//        int result = maxSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4});
+//        int result = minimumTotal(get(new int[][]{{1}, {2, 3}}));
+//        int result = maximalSquare(new char[][]{
+//                {'1', '0', '1', '0', '0'},
+//                {'1', '0', '1', '1', '1'},
+//                {'1', '1', '1', '1', '1'},
+//                {'1', '0', '0', '1', '0'}});
+        int result = maxEnvelopes(new int[][]{{5, 4}, {6, 4}, {6, 7}, {2, 3}});
     }
+
+    private static List<List<Integer>> get(int[][] values) {
+        List<List<Integer>> arrays = new ArrayList<>();
+        for (int[] value1 : values) {
+            List<Integer> value = new ArrayList<>();
+            for (int aValue1 : value1) {
+                value.add(aValue1);
+            }
+            arrays.add(value);
+        }
+        return arrays;
+    }
+
 }
