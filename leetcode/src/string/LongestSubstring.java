@@ -1,9 +1,7 @@
 package string;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LongestSubstring {
     private static String getLongestSubstring(String value) {
@@ -382,6 +380,111 @@ public class LongestSubstring {
         return result;
     }
 
+    static int triangle(int a, int b, int c) {
+
+        if (a <= 0 || b <= 0 || c <= 0) {
+            return 0;
+        }
+
+        if (a == b && b == c) {
+            return 1;
+        }
+
+        if (a + b > c && a + c > b && b + c > a) {
+            return 2;
+        }
+
+        return 0;
+
+    }
+
+    public static List<Integer> delta_encode(List<Integer> numbers) {
+        List<Integer> result = new LinkedList<>();
+        if (numbers == null || numbers.isEmpty()) {
+            return result;
+        }
+        result.add(numbers.get(0));
+
+        Integer previous = numbers.get(0);
+        for (int index = 1; index < numbers.size(); index++) {
+            int value = numbers.get(index) - previous;
+            if (value > 127 || value < -127) {
+                result.add(-128);
+            }
+            result.add(value);
+            previous = numbers.get(index);
+        }
+        return result;
+    }
+
+    static int howManyAgentsToAdd(int noOfCurrentAgents, List<List<Integer>> callsTimes) {
+        int result = 0;
+        for (List<Integer> out : callsTimes) {
+            int resultTemp = 0;
+            for (List<Integer> internal : callsTimes) {
+                if (out.get(0) >= internal.get(0) && out.get(0) <= internal.get(1)) {
+                    resultTemp++;
+                } else if (out.get(1) >= internal.get(0) && out.get(1) <= internal.get(1)) {
+                    resultTemp++;
+                }
+            }
+            result = Math.max(result, resultTemp);
+        }
+
+        return result - noOfCurrentAgents > 0 ? result - noOfCurrentAgents : 0;
+    }
+
+
+    static int howManyAgentsToAdd2(int noOfCurrentAgents, List<List<Integer>> callsTimes) {
+        int result = 0;
+        callsTimes.sort(Comparator.comparingInt(o -> o.get(0)));
+
+        List<Integer> previous = callsTimes.get(0);
+        for (List<Integer> out : callsTimes) {
+            // 有
+            if (out.get(0) <= previous.get(1)) {
+
+            }
+        }
+
+        return result - noOfCurrentAgents > 0 ? result - noOfCurrentAgents : 0;
+    }
+
+    static List<Integer> sort_hotels(String keywords, List<Integer> hotel_ids, List<String> reviews) {
+
+        Set<String> keywordsSet = new HashSet<String>(Arrays.asList(keywords.split(" ")));
+
+        Map<Integer, Integer> statistical = new HashMap<>();
+
+        for (int index = 0; index < hotel_ids.size(); index++) {
+            int value = 0;
+            if (statistical.containsKey(hotel_ids.get(index))) {
+                value = statistical.get(hotel_ids.get(index));
+            }
+
+            String review = reviews.get(index);
+            for (String single : review.split(" ")) {
+                single = single.replaceAll(";", "")
+                        .replace(",", "")
+                        .toLowerCase();
+                if (keywordsSet.contains(single)) {
+                    value++;
+                }
+            }
+
+            statistical.put(hotel_ids.get(index), value);
+        }
+
+        return statistical.keySet()
+                .stream()
+                .sorted((o1, o2) -> {
+                    int value = statistical.get(o2) - statistical.get(o1);
+                    return value == 0 ? o2 - o1 : value;
+                })
+                .collect(Collectors.toList());
+
+    }
+
 
     public static int[][] merge(int[][] intervals) {
         int[][] resultTemp = new int[intervals.length][2];
@@ -601,6 +704,22 @@ public class LongestSubstring {
         add(triangle, deepth + 1, currentIndex + 1, preSum + triangle.get(deepth - 1).get(currentIndex));
     }
 
+
+    public boolean validUtf8(int[] data) {
+        int cnt = 0;
+        for (int d : data) {
+            if (cnt == 0) {
+                if ((d >> 5) == 0b110) cnt = 1;
+                else if ((d >> 4) == 0b1110) cnt = 2;
+                else if ((d >> 3) == 0b11110) cnt = 3;
+                else if (d >> 7 > 0) return false;
+            } else {
+                if ((d >> 6) != 0b10) return false;
+                --cnt;
+            }
+        }
+        return cnt == 0;
+    }
 
     public static void main(String[] args) {
 //        String result = getLongestSubstring("pwwkew");
